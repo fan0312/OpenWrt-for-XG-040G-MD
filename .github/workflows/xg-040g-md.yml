@@ -17,8 +17,8 @@ env:
   CONFIG_FILE: "config/xg-040g-md.config"
   # REPO_URL: https://github.com/immortalwrt/immortalwrt.git
   REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_BRANCH: openwrt-25.12
-  FEEDS_CONF: feeds.conf.default-25.12
+  REPO_BRANCH: main
+  FEEDS_CONF: feeds.conf.default
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
@@ -66,12 +66,7 @@ jobs:
           git clone --depth 1 --branch "$REPO_BRANCH" "$REPO_URL" openwrt
           [ -e patch/02_network ] && cp -f patch/02_network openwrt/target/linux/airoha/an7581/base-files/etc/board.d/02_network
           [ -e patch/an7581.mk ] && cp -f patch/an7581.mk openwrt/target/linux/airoha/image/an7581.mk
-          [ -e patch/an7581-bell_xg-040g-md.dts ] && cp -f patch/an7581-bell_xg-040g-md.dts openwrt/target/linux/airoha/dts/an7581-bell_xg-040g-md.dts
-          [ -e patch/target.mk ] && cp -f patch/target.mk openwrt/target/linux/airoha/an7581/target.mk
-          [ -e patch/config-6.12 ] && cp -f patch/config-6.12 openwrt/target/linux/airoha/an7581/config-6.12
-          [ -e patch/netdevices.mk ] && cp -f patch/netdevices.mk openwrt/package/kernel/linux/modules/netdevices.mk
-          [ -e patch/400-mtd-spinand-Support-fmsh.patch ] && cp -f patch/400-mtd-spinand-Support-fmsh.patch openwrt/target/linux/generic/hack-6.12/400-mtd-spinand-Support-fmsh.patch
-          [ -e patch/342-mtd-spinand-Support-fmsh.patch ] && cp -f patch/netdevices.mk openwrt/package/boot/uboot-mediatek/patches/342-mtd-spinand-Support-fmsh.patch
+          [ -e patch/an7581-bell_xg-040g-md.dts ] && cp -f patch/an7581-bell_xg-040g-md.dts openwrt/target/linux/airoha/dts/an7581-bell_xg-040g-md.dts          
 
       - name: Update & Install feeds
         working-directory: ./openwrt
